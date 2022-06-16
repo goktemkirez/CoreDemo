@@ -1,0 +1,25 @@
+﻿using BussinessLayer.Abstract;
+using DataAccessLayer.Abstract;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BussinessLayer.Concrete
+{
+    public class WriterManager:IWriterService
+    {
+        IWriterDal _writerDal;
+
+        public WriterManager(IWriterDal writerDal)
+        {
+            _writerDal = writerDal;
+        }
+
+        public void WriterAdd(WriterManager writer)
+        {
+            _writerDal.Insert(writer);
+        }
+    }
+}
