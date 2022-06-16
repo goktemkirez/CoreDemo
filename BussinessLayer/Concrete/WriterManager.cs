@@ -1,5 +1,6 @@
 ﻿using BussinessLayer.Abstract;
 using DataAccessLayer.Abstract;
+using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace BussinessLayer.Concrete
             _writerDal = writerDal;
         }
 
-        public void WriterAdd(WriterManager writer)
+        public void WriterAdd(Writer writer)
         {
             _writerDal.Insert(writer);
         }
