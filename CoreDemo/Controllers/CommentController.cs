@@ -26,6 +26,7 @@ namespace CoreDemo.Controllers
             p.BlogID = 4;
             cm.CommentAdd(p);
             return PartialView();
+            //GKTM : BUNU DÜZELT
         }
         public PartialViewResult CommentListByBlog(int id)
         {
