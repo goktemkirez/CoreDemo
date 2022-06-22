@@ -21,6 +21,7 @@ namespace CoreDemo.Controllers
             p.MailStatus = true;
             nm.AddNewsLetter(p);
             return PartialView();
+            //GKTM: BUNU DÜZELT
         }
     }
 }
