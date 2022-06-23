@@ -5,6 +5,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+//builder.Services.AddSession();
+
 builder.Services.AddMvc(config =>
 {
     var policy = new Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder()
@@ -42,7 +44,7 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.UseSession();
+//app.UseSession();
 
 app.MapControllerRoute(
     name: "default",
