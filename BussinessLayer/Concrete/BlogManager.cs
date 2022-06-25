@@ -28,9 +28,9 @@ namespace BussinessLayer.Concrete
             return _blogDal.GetListWithCategoryByWriter(id);
         }
 
-        public Blog GetById(int id)
+        public Blog TGetById(int id)
         {
-            throw new NotImplementedException();
+            return _blogDal.GetById(id);
         }
 
         public List<Blog> GetList()
@@ -55,7 +55,7 @@ namespace BussinessLayer.Concrete
 
         public void TDelete(Blog t)
         {
-            throw new NotImplementedException();
+            _blogDal.Delete(t);
         }
 
         public void TUpdate(Blog t)

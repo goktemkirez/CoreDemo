@@ -33,12 +33,26 @@
             {
                 <td>Pasif</td>
             }
-
-            @*<td>@item.BlogStatus</td>*@
-            <td><a href="#" class="btn btn-danger">Sil</a></td>
+            <td><input type="button" onclick="deleteConfirm(@item.BlogID)" class="btn btn-danger" value="Sil" /></td>
+            @*<td><a href="/Blog/DeleteBlog/@item.BlogID" class="btn btn-danger">Sil</a></td>*@
             <td><a href="#" class="btn btn-warning">Düzenle</a></td>
         </tr>
+
     }
 </table>
-<a href="#" class="btn btn-primary">Yeni Blog Oluştur</a>
+<a href="/Blog/BlogAdd" class="btn btn-primary">Yeni Blog Oluştur</a>
 
+
+<script>
+    function deleteConfirm(id) {
+        if (confirm("Seçilen blog silinecektir. Onaylıyor musunuz?") == true) {
+            $.ajax({
+                url: '/Blog/DeleteBlog',
+                data: { id: id }
+            }).done(function() {
+                alert('Silinmiştir.');
+                window.location = "/Blog/BlogListByWriter";
+            });
+        }
+    }
+</script>
