@@ -17,14 +17,17 @@
                     <div class="form-group">
                         <label for="exampleInputName1">Yazar Adı Soyadı</label>
                         @Html.TextBoxFor(x=>x.WriterName, new {@class="form-control"})
+                        @Html.ValidationMessageFor(x=>x.WriterName)
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail3">Email address</label>
                         @Html.TextBoxFor(x=>x.WriterMail, new {@class="form-control"})
+                        @Html.ValidationMessageFor(x=>x.WriterMail)
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword4">Şifre</label>
                         @Html.PasswordFor(x=>x.WriterPassword, new {@class="form-control"})
+                        @Html.ValidationMessageFor(x=>x.WriterPassword)
                     </div>
                     <div class="form-group">
                         <label>Profil Resmi</label>
@@ -39,6 +42,7 @@
                     <div class="form-group">
                         <label for="exampleTextarea1">Hakkımda</label>
                         @Html.TextAreaFor(x=>x.WriterAbout, 10, 3, new {@class="form-control"})
+                        @Html.ValidationMessageFor(x=>x.WriterPassword)
                     </div>
                     <button type="submit" class="btn btn-gradient-primary mr-2">Kaydet</button>
                     <button class="btn btn-light">Vazgeç</button>
