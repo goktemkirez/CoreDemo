@@ -9,9 +9,7 @@ namespace CoreDemo.ViewComponents.Writer
         MessageManager mm = new MessageManager(new EfMessageRepository());
         public IViewComponentResult Invoke()
         {
-            string p;
-            p = "asd@asd.com";
-            var values = mm.GetInboxListByWriter(p);
+            var values = mm.GetInboxListByWriter(1);
             return View(values);
         }
     }

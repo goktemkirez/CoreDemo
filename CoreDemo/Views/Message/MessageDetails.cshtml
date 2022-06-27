@@ -1,0 +1,19 @@
+﻿@model EntityLayer.Concrete.RelationalMessage
+
+@{
+    ViewData["Title"] = "MessageDetails";
+    Layout = "~/Views/Shared/WriterLayout.cshtml";
+}
+
+<h1>Mesaj Detay Sayfası</h1>
+<br />
+
+@Html.HiddenFor(x=>x.MessageID)
+
+@Html.Label("Mesaj Başlık")
+@Html.LabelFor(x=>x.Subject, new{@class="form-control"})
+<br />
+@Html.Label("Mesaj İçeriği")
+@Html.LabelFor(x=>x.MessageDetails, new{@class="form-control"})
+<br />
+<a href="/Message/InBox/" class="btn btn-success">Mesajlara Dön</a>
