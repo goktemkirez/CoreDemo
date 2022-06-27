@@ -19,6 +19,22 @@ namespace DataAccessLayer.Concrete
             optionsBuilder.UseSqlServer("server=GOKTEMKIREZ-PC;database=CoreBlogDb; " +
                 "integrated security=true;");
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<RelationalMessage>()
+                .HasOne(x => x.SenderUser)
+                .WithMany(y => y.WriterSender)
+                .HasForeignKey(z => z.SenderID)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+            modelBuilder.Entity<RelationalMessage>()
+                .HasOne(x => x.ReceiverUser)
+                .WithMany(y => y.WriterReceiver)
+                .HasForeignKey(z => z.ReceiverID)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+        }
+
         public DbSet<About> Abouts { get; set; }
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Category> Categories { get; set; }
@@ -29,6 +45,7 @@ namespace DataAccessLayer.Concrete
         public DbSet<BlogRating> BlogRatings { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<Message> Messages { get; set; }
+        public DbSet<RelationalMessage> RelationalMessages { get; set; }
 
     }
 }
