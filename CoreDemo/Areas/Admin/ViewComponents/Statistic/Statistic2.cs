@@ -10,8 +10,6 @@ namespace CoreDemo.Areas.Admin.ViewComponents.Statistic
         {
             ViewBag.v1 = c.Blogs.OrderByDescending(x=>x.BlogID)
                 .Select(x => x.BlogTitle).Take(1).FirstOrDefault();
-            ViewBag.v2 = c.Contacts.Count();
-            ViewBag.v3 = c.Comments.Count();
             return View();
         }
     }
