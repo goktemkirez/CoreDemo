@@ -35,32 +35,36 @@
             <form class="m-t" role="form" asp-action="Index">
                 <div class="form-group">
                     <span asp-validation-for="@Model.NameSurname" class="text-danger"></span>
-                    <input type="text" class="form-control" asp-for="@Model.NameSurname" 
-                    placeholder="Adınız Soyadınız">
+                    <input type="text" class="form-control" asp-for="@Model.NameSurname"
+                           placeholder="Adınız Soyadınız">
                 </div>
                 <div class="form-group">
                     <span asp-validation-for="@Model.Mail" class="text-danger"></span>
-                    <input type="email" class="form-control" asp-for="@Model.Mail" 
-                    placeholder="Email">
+                    <input type="email" class="form-control" asp-for="@Model.Mail"
+                           placeholder="Email">
                 </div>
                 <div class="form-group">
                     <span asp-validation-for="@Model.UserName" class="text-danger"></span>
-                    <input type="text" class="form-control" asp-for="@Model.UserName" 
-                    placeholder="Kullanıcı Adınız">
+                    <input type="text" class="form-control" asp-for="@Model.UserName"
+                           placeholder="Kullanıcı Adınız">
                 </div>
                 <div class="form-group">
                     <span asp-validation-for="@Model.Password" class="text-danger"></span>
-                    <input type="password" class="form-control" asp-for="@Model.Password" 
-                    placeholder="Şifre">
+                    <input type="password" class="form-control" asp-for="@Model.Password"
+                           placeholder="Şifre">
                 </div>
                 <div class="form-group">
                     <span asp-validation-for="@Model.ConfirmPassword" class="text-danger"></span>
-                    <input type="password" class="form-control" asp-for="@Model.ConfirmPassword" 
-                    placeholder="Şifre Tekrar">
+                    <input type="password" class="form-control" asp-for="@Model.ConfirmPassword"
+                           placeholder="Şifre Tekrar">
                 </div>
                 <div class="form-group">
-                    <div class="checkbox i-checks"><label> <input type="checkbox"><i></i> 
-                        Kullanım şartlarını okudum, kabul ediyorum. </label></div>
+                    <div class="checkbox i-checks">
+                        <label>
+                            <input type="checkbox"><i></i>
+                            Kullanım şartlarını okudum, kabul ediyorum.
+                        </label>
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-primary block full-width m-b">Kayıt Ol</button>
 
@@ -68,7 +72,6 @@
                 <a class="btn btn-sm btn-white btn-block" href="/RegisterUser/Login/">Giriş Yap</a>
 
                 <div class="text-danger" asp-validation-summary="ModelOnly">
-
                 </div>
             </form>
             <p class="m-t"> <small>Asp.NET Core 6.0; @DateTime.Now.Year</small> </p>
