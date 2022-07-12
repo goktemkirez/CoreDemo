@@ -1,6 +1,8 @@
 ﻿using BussinessLayer.Concrete;
 using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
+using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoreDemo.ViewComponents.Writer
@@ -12,7 +14,10 @@ namespace CoreDemo.ViewComponents.Writer
 
         public IViewComponentResult Invoke()
         {
-            var userMail = User.Identity.Name; 
+            var userName = User.Identity?.Name;
+            ViewBag.UserName = userName;
+            var userMail = c.Users.Where(x => x.UserName == userName)
+                .Select(y => y.Email).FirstOrDefault();
             var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID)
                 .FirstOrDefault();
             var values = wm.GetWriterById(writerID);
