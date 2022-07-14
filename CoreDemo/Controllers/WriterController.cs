@@ -16,7 +16,7 @@ namespace CoreDemo.Controllers
         Context c = new Context();
         public IActionResult Index()
         {
-            var userMail = User.Identity.Name;
+            var userMail = User.Identity?.Name;
             ViewBag.v = userMail;
             var writerName = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterName)
                 .FirstOrDefault();
@@ -50,7 +50,9 @@ namespace CoreDemo.Controllers
         [HttpGet]
         public IActionResult WriterEditProfile()
         {
-            var userMail = User.Identity.Name;
+            var userName = User.Identity?.Name;
+            var userMail = c.Users.Where(x => x.UserName == userName)
+                .Select(y => y.Email).FirstOrDefault();
             var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID)
                 .FirstOrDefault();
             var writerValues = wm.TGetById(writerID);
@@ -65,7 +67,7 @@ namespace CoreDemo.Controllers
             ValidationResult result = wv.Validate(p);
             if (result.IsValid)
             {
-                wm.TUpdate(p);
+                wm.TUpdate(w);
                 return RedirectToAction("Index", "Dashboard");
             }
             else
