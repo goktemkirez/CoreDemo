@@ -14,11 +14,15 @@ namespace CoreDemo.Controllers
     {
         BlogManager bm = new BlogManager(new EfBlogRepository());
         Context c = new Context();
+
+        [AllowAnonymous]
         public IActionResult Index()
         {
             var values = bm.GetBlogListWithCategory();
             return View(values);
         }
+
+        [AllowAnonymous]
         public IActionResult BlogReadAll(int id)
         {
             ViewBag.Id = id;
@@ -28,7 +32,7 @@ namespace CoreDemo.Controllers
 
         public IActionResult BlogListByWriter()
         {
-            var userMail = User.Identity.Name;
+            var userMail = User.Identity?.Name;
             var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID)
                 .FirstOrDefault();
             var values = bm.GetListWithCategoryByWriterBm(1);
@@ -51,7 +55,7 @@ namespace CoreDemo.Controllers
         [HttpPost]
         public IActionResult BlogAdd(Blog p)
         {
-            var userMail = User.Identity.Name;
+            var userMail = User.Identity?.Name;
             var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID)
                 .FirstOrDefault();
 
@@ -99,7 +103,7 @@ namespace CoreDemo.Controllers
         [HttpPost]
         public IActionResult EditBlog(Blog p)
         {
-            var userMail = User.Identity.Name;
+            var userMail = User.Identity?.Name;
             var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID)
                 .FirstOrDefault();
 
