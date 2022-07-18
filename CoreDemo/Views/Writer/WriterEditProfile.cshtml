@@ -1,40 +1,43 @@
-﻿@model EntityLayer.Concrete.AppUser
+﻿@model UserUpdateViewModel
 
 @{
     ViewData["Title"] = "WriterEditProfile";
     Layout = "~/Views/Shared/WriterLayout.cshtml";
 }
 
-@using (Html.BeginForm("WriterEditProfile", "Writer", FormMethod.Post))
-{
+@*@using (Html.BeginForm("WriterEditProfile", "Writer", FormMethod.Post))*@
+
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Yazar Ayarları</h4>
                 <br />
-                <form class="forms-sample">
-                    @Html.HiddenFor(x=>x.Id)
+                <form class="forms-sample" method="post">
+                    @*@Html.HiddenFor(x=>x.Id)*@
                     <div class="form-group">
                         <label for="exampleInputName1">Yazar Adı Soyadı</label>
-                        @Html.TextBoxFor(x=>x.NameSurname, new {@class="form-control"})
-                        @Html.ValidationMessageFor(x=>x.NameSurname)
+                        <input type="text" asp-for="@Model.NameSurname" class="form-control" />
+                        @*@Html.TextBoxFor(x=>x.NameSurname, new {@class="form-control"})
+                        @Html.ValidationMessageFor(x=>x.NameSurname)*@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputName1">Kullanıcı Adı</label>
-                        @Html.TextBoxFor(x=>x.UserName, new {@class="form-control"})
-                        @Html.ValidationMessageFor(x=>x.UserName)
+                        <input type="text" asp-for="@Model.UserName" class="form-control" />
+                        @*@Html.TextBoxFor(x=>x.UserName, new {@class="form-control"})
+                        @Html.ValidationMessageFor(x=>x.UserName)*@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail3">Email address</label>
-                        @Html.TextBoxFor(x=>x.Email, new {@class="form-control"})
-                        @Html.ValidationMessageFor(x=>x.Email)
+                        <input type="text" asp-for="@Model.Mail" class="form-control" />
+                        @*@Html.TextBoxFor(x=>x.Email, new {@class="form-control"})
+                        @Html.ValidationMessageFor(x=>x.Email)*@
                     </div>
-                    <div class="form-group">
+                    @*<div class="form-group">
                         <label for="exampleInputPassword4">Şifre</label>
                         @Html.PasswordFor(x=>x.PasswordHash, new {@class="form-control"})
                         @Html.ValidationMessageFor(x=>x.PasswordHash)
-                    </div>
-                    <div class="form-group">
+                    </div>*@
+                    @*<div class="form-group">
                         <label>Profil Resmi</label>
                         <input type="file" name="img[]" class="file-upload-default">
                         <div class="input-group col-xs-12">
@@ -43,7 +46,7 @@
                                 <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
                             </span>
                         </div>
-                    </div>
+                    </div>*@
                     @*<div class="form-group">
                         <label for="exampleTextarea1">Hakkımda</label>
                         @Html.TextAreaFor(x=>x.WriterAbout, 10, 3, new {@class="form-control"})
@@ -55,4 +58,4 @@
             </div>
         </div>
     </div>
-}
+

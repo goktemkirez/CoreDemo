@@ -58,43 +58,55 @@ namespace CoreDemo.Controllers
         }
 
         [HttpGet]
-        public IActionResult WriterEditProfile()
+        public async Task<IActionResult> WriterEditProfile()
         {
             //GTKM: SOLID ezildi, çalış
-            var userName = User.Identity?.Name;
-            var userMail = c.Users.Where(x => x.UserName == userName)
-                .Select(y => y.Email).FirstOrDefault();
+            //var userName = User.Identity?.Name;
+            //var userMail = c.Users.Where(x => x.UserName == userName)
+            //    .Select(y => y.Email).FirstOrDefault();
             //var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID)
             //    .FirstOrDefault();
             //var writerValues = wm.TGetById(writerID);
             //return View(writerValues);
 
             //var values = await _userManager.FindByNameAsync(User.Identity?.Name);
-            var id = c.Users.Where(x => x.Email == userMail).Select(y => y.Id)
-                .FirstOrDefault();
-            var values = userManager.TGetById(id);
-            return View(values);
+            //var id = c.Users.Where(x => x.Email == userMail).Select(y => y.Id)
+            //    .FirstOrDefault();
+            //var values = userManager.TGetById(id);
+
+            var values = await _userManager.FindByNameAsync(User.Identity?.Name);
+            UserUpdateViewModel model = new UserUpdateViewModel();
+            model.Mail = values.Email;
+            model.NameSurname = values.NameSurname;
+            model.UserName = values.UserName;
+            return View(model);
         }
         [HttpPost]
-        public IActionResult WriterEditProfile(Writer p)
+        public async Task<IActionResult> WriterEditProfile(UserUpdateViewModel model)
         {
-            p.WriterImage = "/CoreBlogTema/images/6.jpg";
-            p.WriterStatus = true;
-            WriterValidator wv = new WriterValidator();
-            ValidationResult result = wv.Validate(p);
-            if (result.IsValid)
-            {
-                wm.TUpdate(p);
-                return RedirectToAction("Index", "Dashboard");
-            }
-            else
-            {
-                foreach(var item in result.Errors)
-                {
-                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
-                }
-            }
-            return View();
+            //p.WriterImage = "/CoreBlogTema/images/6.jpg";
+            //p.WriterStatus = true;
+            //WriterValidator wv = new WriterValidator();
+            //ValidationResult result = wv.Validate(p);
+            //if (result.IsValid)
+            //{
+            //    wm.TUpdate(p);
+            //    return RedirectToAction("Index", "Dashboard");
+            //}
+            //else
+            //{
+            //    foreach(var item in result.Errors)
+            //    {
+            //        ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+            //    }
+            //}
+            //return View();
+
+            var values = await _userManager.FindByNameAsync(User.Identity?.Name);
+            values.NameSurname = model.NameSurname;
+            values.Email = model.Mail;
+            var result = await _userManager.UpdateAsync(values);
+            return RedirectToAction("Index", "Dashboard");
         }
 
         [AllowAnonymous]
