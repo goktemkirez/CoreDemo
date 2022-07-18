@@ -6,6 +6,7 @@ using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoreDemo.Controllers
@@ -13,7 +14,16 @@ namespace CoreDemo.Controllers
     public class WriterController : Controller
     {
         WriterManager wm = new WriterManager(new EfWriterRepository());
+        UserManager userManager = new UserManager(new EfUserRepository());
         Context c = new Context();
+
+        private readonly UserManager<AppUser> _userManager;
+
+        public WriterController(UserManager<AppUser> userManager)
+        {
+            _userManager = userManager;
+        }
+
         public IActionResult Index()
         {
             var userMail = User.Identity?.Name;
@@ -50,13 +60,20 @@ namespace CoreDemo.Controllers
         [HttpGet]
         public IActionResult WriterEditProfile()
         {
+            //GTKM: SOLID ezildi, çalış
             var userName = User.Identity?.Name;
             var userMail = c.Users.Where(x => x.UserName == userName)
                 .Select(y => y.Email).FirstOrDefault();
-            var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID)
+            //var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID)
+            //    .FirstOrDefault();
+            //var writerValues = wm.TGetById(writerID);
+            //return View(writerValues);
+
+            //var values = await _userManager.FindByNameAsync(User.Identity?.Name);
+            var id = c.Users.Where(x => x.Email == userMail).Select(y => y.Id)
                 .FirstOrDefault();
-            var writerValues = wm.TGetById(writerID);
-            return View(writerValues);
+            var values = userManager.TGetById(id);
+            return View(values);
         }
         [HttpPost]
         public IActionResult WriterEditProfile(Writer p)
@@ -67,7 +84,7 @@ namespace CoreDemo.Controllers
             ValidationResult result = wv.Validate(p);
             if (result.IsValid)
             {
-                wm.TUpdate(w);
+                wm.TUpdate(p);
                 return RedirectToAction("Index", "Dashboard");
             }
             else
