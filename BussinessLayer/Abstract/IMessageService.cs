@@ -10,5 +10,6 @@ namespace BussinessLayer.Abstract
     public interface IMessageService:IGenericService<RelationalMessage>
     {
         List<RelationalMessage> GetInboxListByWriter(int id);
+        List<RelationalMessage> GetSendBoxListByWriter(int id);
     }
 }

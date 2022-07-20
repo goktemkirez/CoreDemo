@@ -47,5 +47,10 @@ namespace BussinessLayer.Concrete
         {
             throw new NotImplementedException();
         }
+
+        public List<RelationalMessage> GetSendBoxListByWriter(int id)
+        {
+            return _messageDal.GetSendBoxByWriter(id);
+        }
     }
 }

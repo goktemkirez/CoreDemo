@@ -2,11 +2,11 @@
 @model List<RelationalMessage>
 
 @{
-    ViewData["Title"] = "InBox";
+    ViewData["Title"] = "SendBox";
     Layout = "~/Views/Shared/WriterLayout.cshtml";
 }
 
-<h1>Gelen Kutusu</h1>
+<h1>Giden Kutusu</h1>
 <table class="table table-bordered">
     <tr>
         <th>#</th>
@@ -20,7 +20,7 @@
         <tr>
             <td>@item.MessageID</td>
             <td>@item.Subject</td>
-            <td>@item.SenderUser.WriterName</td>
+            <td>@item.ReceiverUser.WriterName</td>
             <td>
                 @(((DateTime)
             item.MessageDate).ToString("dd-MM-yyyy"))
@@ -33,6 +33,5 @@
 <a href="/Message/SendMessage/" class="btn btn-primary">Yeni Mesaj Oluştur</a>
 <br />
 <br />
-<a href="/Message/SendBox/" class="btn btn-success">Giden Mesajlar</a>
-
+<a href="/Message/InBox/" class="btn btn-success">Gelen Mesajlar</a>
 

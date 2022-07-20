@@ -22,6 +22,17 @@ namespace CoreDemo.Controllers
             return View(values);
         }
 
+        public IActionResult SendBox()
+        {
+            var userName = User.Identity?.Name;
+            var userMail = c.Users.Where(x => x.UserName == userName)
+                .Select(y => y.Email).FirstOrDefault();
+            var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID)
+                .FirstOrDefault();
+            var values = mm.GetSendBoxListByWriter(writerID);
+            return View(values);
+        }
+
         public IActionResult MessageDetails(int id)
         {
             var value = mm.TGetById(id);
