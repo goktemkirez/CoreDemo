@@ -38,6 +38,12 @@ namespace CoreDemo.Controllers
             return View(p);
         }
 
+        public async Task<IActionResult> LogOut()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Login");
+        }
+
         //[HttpPost]
         //public async Task<IActionResult> Index(Writer p)
         //{
