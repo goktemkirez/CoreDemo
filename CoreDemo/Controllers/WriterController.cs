@@ -105,6 +105,8 @@ namespace CoreDemo.Controllers
             var values = await _userManager.FindByNameAsync(User.Identity?.Name);
             values.NameSurname = model.NameSurname;
             values.Email = model.Mail;
+            if (model.Password != null)
+                values.PasswordHash = _userManager.PasswordHasher.HashPassword(values, model.Password);
             var result = await _userManager.UpdateAsync(values);
             return RedirectToAction("Index", "Dashboard");
         }
