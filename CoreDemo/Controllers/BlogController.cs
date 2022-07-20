@@ -32,7 +32,9 @@ namespace CoreDemo.Controllers
 
         public IActionResult BlogListByWriter()
         {
-            var userMail = User.Identity?.Name;
+            var userName = User.Identity?.Name;
+            var userMail = c.Users.Where(x => x.UserName == userName)
+                .Select(y => y.Email).FirstOrDefault();
             var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID)
                 .FirstOrDefault();
             var values = bm.GetListWithCategoryByWriterBm(1);
@@ -55,7 +57,9 @@ namespace CoreDemo.Controllers
         [HttpPost]
         public IActionResult BlogAdd(Blog p)
         {
-            var userMail = User.Identity?.Name;
+            var userName = User.Identity?.Name;
+            var userMail = c.Users.Where(x => x.UserName == userName)
+                .Select(y => y.Email).FirstOrDefault();
             var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID)
                 .FirstOrDefault();
 
@@ -103,7 +107,9 @@ namespace CoreDemo.Controllers
         [HttpPost]
         public IActionResult EditBlog(Blog p)
         {
-            var userMail = User.Identity?.Name;
+            var userName = User.Identity?.Name;
+            var userMail = c.Users.Where(x => x.UserName == userName)
+                .Select(y => y.Email).FirstOrDefault();
             var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID)
                 .FirstOrDefault();
 

@@ -34,6 +34,17 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         x.LoginPath = "/Login/Index";
     });
 
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    //Cookie Settings
+    options.Cookie.HttpOnly = true;
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+
+    options.LoginPath = "/Login/Index/";
+    options.SlidingExpiration = true;
+
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
