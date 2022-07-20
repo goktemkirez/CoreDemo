@@ -30,7 +30,7 @@ namespace BussinessLayer.Concrete
 
         public void TAdd(RelationalMessage t)
         {
-            throw new NotImplementedException();
+            _messageDal.Insert(t);
         }
 
         public void TDelete(RelationalMessage t)
