@@ -210,7 +210,10 @@
             });
         });
     </script>
-    @await RenderSectionAsync("scripts")
+    @if (IsSectionDefined("scripts"))
+    {
+        @await RenderSectionAsync("scripts")
+    }
 </body>
 
 </html>
