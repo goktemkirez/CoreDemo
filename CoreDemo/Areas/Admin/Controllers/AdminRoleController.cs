@@ -101,7 +101,7 @@ namespace CoreDemo.Areas.Admin.Controllers
             var user = _userManager.Users.FirstOrDefault(x => x.Id == id);
             var roles = _roleManager.Roles.ToList();
 
-            TempData["UserId"] = user.Id;
+            TempData["Userid"] = user.Id;
 
             var userRoles = await _userManager.GetRolesAsync(user);
 
