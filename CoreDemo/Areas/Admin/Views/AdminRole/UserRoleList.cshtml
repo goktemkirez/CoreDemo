@@ -16,8 +16,6 @@
                 <th>#</th>
                 <th>Kullanıcı</th>
                 <th>Rol Ata</th>
-                <th>Sil</th>
-                <th>Düzenle</th>
             </tr>
         </thead>
         <tbody>
@@ -27,8 +25,6 @@
                     <td>@item.Id</td>
                     <td>@item.UserName</td>
                     <td><a href="/Admin/AdminRole/AssignRole/@item.Id/" class="btn btn-outline-secondary">Rol Ata</a></td>
-                    <td><a href="/Admin/AdminRole/DeleteRole/@item.Id" class="btn btn-outline-danger">Sil</a></td>
-                    <td><a href="/Admin/AdminRole/UpdateRole/@item.Id" class="btn btn-outline-success">Güncelle</a></td>
                 </tr>
             }
         </tbody>
