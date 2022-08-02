@@ -44,6 +44,11 @@ namespace CoreDemo.Controllers
             return RedirectToAction("Index", "Login");
         }
 
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
+
         //[HttpPost]
         //public async Task<IActionResult> Index(Writer p)
         //{
